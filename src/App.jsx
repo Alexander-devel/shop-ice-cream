@@ -1,11 +1,39 @@
-import './App.css';
+import { Cards } from './components/cards/Cards'
+const App = () => {
+  let cards = [{
+    id: 2523353,
+    text: 'Snow Tender Ice Cream',
+    price: '$410.00'
+  },
+  {
+    id: 2523353,
+    text: 'Snow Tender Ice Cream',
+    price: '$391.00'
+  },
+  {
+    id: 2523353,
+    text: 'Snow Tender Ice Cream',
+    price: '$501.00'
+  },
+  {
+    id: 2523353,
+    text: 'Snow Tender Ice Cream',
+    price: '$726.00'
+  },
+  {
+    id: 2523353,
+    text: 'Snow Tender Ice Cream',
+    price: '$111.00'
+  },
+  {
+    id: 2523353,
+    text: 'Snow Tender Ice Cream',
+    price: '$243.00'
+  }]
 
-function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>Hello React!!!</p>
-      </header>
+        <Cards cards={cards} />
     </div>
   );
 }
