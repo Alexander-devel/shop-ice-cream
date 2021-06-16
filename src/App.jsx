@@ -1,4 +1,7 @@
-import { Cards } from "./components/cards/Cards";
+import React, { useState } from "react";
+import Header from "./layouts/Header/Header";
+import Main from "./layouts/Main/Main";
+import Footer from "./layouts/Footer/Footer";
 
 const App = () => {
   const cards = [
@@ -34,9 +37,13 @@ const App = () => {
     },
   ];
 
+  const [buy, setBuy] = useState(1);
+
   return (
     <div className="App">
-      <Cards cards={cards} />
+        <Header buy={buy} />
+        <Main cards={cards}/>
+        <Footer />
     </div>
   );
 };
