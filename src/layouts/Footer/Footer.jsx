@@ -35,7 +35,7 @@ const Footer = () => {
       </Container>
 
       <div className="footer-info">
-        <Container>© 2021 Justice-team. All rights reserved.</Container>
+        <Container>© {new Date().getFullYear()}  Justice-team. All rights reserved.</Container>
       </div>
     </div>
   );
