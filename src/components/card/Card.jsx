@@ -5,7 +5,7 @@ import "./Card.sass";
 
 export const Card = (props) => {
   const { id, url, info, price } = props;
-  const history = useHistory();
+  let history = useHistory();
 
   const handleCard = () => {
     history.push('/description');

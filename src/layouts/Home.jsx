@@ -3,7 +3,7 @@ import Header from "./Header/Header";
 import Main from "./Main/Main";
 import Footer from "./Footer/Footer";
 
-const Home = () => {
+const Home = (props) => {
   const cards = [
     {
       id: 2523353,
@@ -39,7 +39,7 @@ const Home = () => {
 
   return (
     <div className="App">
-      <Header />
+      <Header handleLogin={props.handleLogin} handleLogout={props.handleLogout}/>
       <Main cards={cards} />
       <Footer />
     </div>

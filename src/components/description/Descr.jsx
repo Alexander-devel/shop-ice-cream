@@ -17,6 +17,7 @@ const Descr = (props) => {
   );
   const [addCart, setAddCart] = useState(false);
   const [success, setSuccess] = useState(false);
+  let products = localStorage.getItem('prods') ? localStorage.getItem('prods') : [];
 
   const handleMinus = () => {
     if (count > 0) {
@@ -31,6 +32,8 @@ const Descr = (props) => {
   };
 
   const handleAddCard = () => {
+    products.push({name: 'Snow Tender Ice Cream', price: '$243.00', count: count});
+    console.log(products);
     setBuy((prev) => prev + count);
     localStorage.setItem("cart", buy);
     if (count > 0) {
@@ -50,7 +53,7 @@ const Descr = (props) => {
 
   return (
     <div className="Descr">
-      <Header />
+      <Header handleLogin={props.handleLogin} handleLogout={props.handleLogout} />
       <div className="Descr-block">
         <Container>
           <Link to="/home" className="main-link">
