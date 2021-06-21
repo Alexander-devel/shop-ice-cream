@@ -31,7 +31,6 @@ const Descr = (props) => {
   };
 
   const handleAddCard = () => {
-    // setBuy(1);
     setBuy((prev) => prev + count);
     localStorage.setItem("cart", buy);
     if (count > 0) {
