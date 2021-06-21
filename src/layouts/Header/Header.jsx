@@ -20,7 +20,7 @@ const useWindowSize = () => {
   return size;
 };
 
-const Header = ({ buy }) => {
+const Header = () => {
   const [width, height] = useWindowSize();
   const [burger, setBurger] = useState(false);
   const [dropMenu, setDropMenu] = useState(false);
@@ -47,7 +47,9 @@ const Header = ({ buy }) => {
               <span className="Header-profile_sign-in">Sign in</span>
             </span>
             <div className="basket">
-              {buy ? <p className="basket_buy">{buy}</p> : null}
+              {localStorage.getItem("cart") ? (
+                <p className="basket_buy">{localStorage.getItem("cart")}</p>
+              ) : null}
               <img src={basket} alt="basket" />
               <span className="Header-profile_card">Cart</span>
             </div>
@@ -78,7 +80,9 @@ const Header = ({ buy }) => {
               <span className="Header-profile_sign-in">Sign in</span>
             </span>
             <div className="basket">
-              {buy ? <p className="basket_buy">{buy}</p> : null}
+              {localStorage.getItem("cart") ? (
+                <p className="basket_buy">{localStorage.getItem("cart")}</p>
+              ) : null}
               <img src={basket} alt="basket" />
             </div>
             <span className="Header-profile_card">Cart</span>

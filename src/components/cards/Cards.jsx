@@ -8,7 +8,7 @@ export const Cards = ({ cards }) => (
     <Container className="container" fixed>
       {cards.map((item) => {
         const { id, url, info, price } = item;
-        return <Card key={id} url={url} info={info} price={price} />;
+        return <Card key={id} id={id} url={url} info={info} price={price} />;
       })}
     </Container>
   </div>
