@@ -1,0 +1,33 @@
+import React from "react";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@material-ui/core";
+import Slide from "@material-ui/core/Slide";
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
+const Registration = (props) => {
+  return (
+    <div>
+      <Dialog
+        open={props.registration}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={() => props.setRegistration(false)}
+        aria-labelledby="alert-dialog-slide-title"
+        aria-describedby="alert-dialog-slide-description"
+      >
+        <h3>Create an account</h3>
+      </Dialog>
+    </div>
+  );
+};
+
+export default Registration;

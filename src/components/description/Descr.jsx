@@ -1,22 +1,27 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Container } from "@material-ui/core";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Footer from "../../layouts/Footer/Footer";
-import Header from "../../layouts/Header/Header";
-import iceCreamBig from "../../img/ice-cream-big.png";
-import basket from "../../img/white-basket.svg";
-import successImg from "../../img/success.svg";
-import "./Descr.sass";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Container } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+import Footer from '../../layouts/Footer/Footer';
+import Header from '../../layouts/Header/Header';
+
+import iceCreamBig from '../../img/ice-cream-big.png';
+import basket from '../../img/white-basket.svg';
+import successImg from '../../img/success.svg';
+import './Descr.sass';
 
 const Descr = (props) => {
   const { url, scu, name, text, price } = props;
   const [count, setCount] = useState(0);
   const [buy, setBuy] = useState(
-    +localStorage.getItem("cart") ? +localStorage.getItem("cart") : 0
+    +localStorage.getItem('cart') ? +localStorage.getItem('cart') : 0
   );
   const [addCart, setAddCart] = useState(false);
   const [success, setSuccess] = useState(false);
+  let products = localStorage.getItem('prods')
+    ? localStorage.getItem('prods')
+    : [];
 
   const handleMinus = () => {
     if (count > 0) {
@@ -31,8 +36,14 @@ const Descr = (props) => {
   };
 
   const handleAddCard = () => {
+    products.push({
+      name: 'Snow Tender Ice Cream',
+      price: '$243.00',
+      count: count,
+    });
+    console.log(products);
     setBuy((prev) => prev + count);
-    localStorage.setItem("cart", buy);
+    localStorage.setItem('cart', buy);
     if (count > 0) {
       setAddCart(true);
       setTimeout(() => {
@@ -43,27 +54,30 @@ const Descr = (props) => {
         setSuccess(true);
         setTimeout(() => {
           setSuccess(false);
-        }, 1500)
-      }, 2000)
+        }, 1500);
+      }, 2000);
     }
   };
 
   return (
     <div className="Descr">
-      <Header />
+      <Header
+        handleLogin={props.handleLogin}
+        handleLogout={props.handleLogout}
+      />
       <div className="Descr-block">
         <Container>
           <Link to="/home" className="main-link">
             Main page /
-          </Link>{" "}
+          </Link>{' '}
           <span className="product-link">Product card</span>
           <div className="Descr-main">
             <div className="Descr-img">
               <img src={url ? url : iceCreamBig} alt="ice cream" />
             </div>
             <div className="Descr-info">
-              <h5>{scu ? scu : "SKU: BXD100BLK"}</h5>
-              <h2>{name ? name : "Snow Tender Ice Cream"}</h2>
+              <h5>{scu ? scu : 'SKU: BXD100BLK'}</h5>
+              <h2>{name ? name : 'Snow Tender Ice Cream'}</h2>
               <span className="Descr-info_description">Description:</span>
               <div className="Descr-info_text">
                 <p className="Descr-info_text">
@@ -73,7 +87,7 @@ const Descr = (props) => {
                 </p>
               </div>
               <div className="count">
-                <span className="count_price">{price ? price : "$243.00"}</span>
+                <span className="count_price">{price ? price : '$243.00'}</span>
                 <div className="count-num">
                   <button className="btn-minus" onClick={() => handleMinus()}>
                     -
@@ -87,7 +101,7 @@ const Descr = (props) => {
               {!addCart ? (
                 <div className="success">
                   <button className="add-card" onClick={() => handleAddCard()}>
-                    <img src={basket} alt="basket" className="add-card_img" />{" "}
+                    <img src={basket} alt="basket" className="add-card_img" />{' '}
                     Add to cart
                   </button>
                   {success && (

@@ -1,7 +1,8 @@
-import React from "react";
-import { Cards } from "../../components/cards/Cards";
-import heart from "../../img/heart.png";
-import "./Main.sass";
+import React from 'react';
+import { Cards } from '../../components/cards/Cards';
+
+import heart from '../../img/heart.png';
+import './Main.sass';
 
 const Main = ({ cards }) => {
   return (
