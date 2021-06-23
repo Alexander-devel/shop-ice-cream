@@ -1,15 +1,16 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
-import imgIce from "../../img/ice-cream.png";
-import "./Card.sass";
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+
+import imgIce from '../../img/ice-cream.png';
+import './Card.sass';
 
 export const Card = (props) => {
   const { id, url, info, price } = props;
-  let history = useHistory();
+  const history = useHistory();
 
   const handleCard = () => {
     history.push('/description');
-  }
+  };
 
   return (
     <div className="Card" onClick={() => handleCard()}>
@@ -18,9 +19,9 @@ export const Card = (props) => {
       </div>
       <div className="information">
         <p className="information_text">
-          {info ? info : "Snow Tender Ice Cream"}
+          {info ? info : 'Snow Tender Ice Cream'}
         </p>
-        <p className="price">{price ? price : "$243.00"}</p>
+        <p className="price">{price ? price : '$243.00'}</p>
       </div>
     </div>
   );

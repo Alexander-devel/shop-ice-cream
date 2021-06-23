@@ -1,8 +1,9 @@
-import React from "react";
-import { Container } from "@material-ui/core";
-import logo from "../../img/logoM.png";
-import logoText from "../../img/logo-text.png";
-import "./Footer.sass";
+import React from 'react';
+import { Container } from '@material-ui/core';
+
+import logo from '../../img/logoM.png';
+import logoText from '../../img/logo-text.png';
+import './Footer.sass';
 
 const Footer = () => {
   return (
@@ -35,7 +36,9 @@ const Footer = () => {
       </Container>
 
       <div className="footer-info">
-        <Container>© {new Date().getFullYear()}  Justice-team. All rights reserved.</Container>
+        <Container>
+          © {new Date().getFullYear()} Justice-team. All rights reserved.
+        </Container>
       </div>
     </div>
   );

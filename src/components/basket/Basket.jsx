@@ -1,45 +1,57 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Container } from "@material-ui/core";
-import Header from "../../layouts/Header/Header";
-import Footer from "../../layouts/Footer/Footer";
-import iceCreamMini from "../../img/ice-cream-mini.png";
-import deleteImg from "../../img/delete.svg";
-import "./Basket.sass";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Container } from '@material-ui/core';
+
+import Header from '../../layouts/Header/Header';
+import Footer from '../../layouts/Footer/Footer';
+
+import iceCreamMini from '../../img/ice-cream-mini.png';
+import deleteImg from '../../img/delete.svg';
+import './Basket.sass';
 
 const Basket = (props) => {
-  let prods = [
+  const prods = [
     {
-      text: "Snow Tender Ice Cream",
+      text: 'Snow Tender Ice Cream',
       pcs: 1,
-      price: 243.0,
+      price: 243,
     },
     {
-      text: "Snow Tender Ice Cream",
+      text: 'Snow Tender Ice Cream',
       pcs: 1,
-      price: 243.0,
+      price: 243,
     },
     {
-      text: "Snow Tender Ice Cream",
+      text: 'Snow Tender Ice Cream',
       pcs: 1,
-      price: 243.0,
+      price: 243,
     },
   ];
 
-  localStorage.setItem("products", JSON.stringify(prods));
+  localStorage.setItem('products', JSON.stringify(prods));
 
-  const [products, setProducts] = useState(
-    JSON.parse(localStorage.getItem("products"))
+  const [result, setResult] = useState(
+    JSON.parse(localStorage.getItem('products')).reduce((total, item) => {
+      console.log(total + ' ' + item.price);
+      return total + item.price;
+    }, 0)
   );
-  let result = 0;
+  const [products, setProducts] = useState(
+    JSON.parse(localStorage.getItem('products'))
+  );
 
   const onDeleteProd = (index) => {
-    let arr = JSON.parse(localStorage.getItem("products"));
-    console.log(arr);
+    let arr = JSON.parse(localStorage.getItem('products'));
     delete arr[index];
     arr = arr.filter((val) => val);
-    localStorage.setItem("products", JSON.stringify(arr));
-    setProducts(JSON.parse(localStorage.getItem("products")));
+    localStorage.setItem('products', JSON.stringify(arr));
+    setResult(
+      JSON.parse(localStorage.getItem('products')).reduce((total, item) => {
+        console.log(total + ' ' + item.price);
+        return total + item.price;
+      }, 0)
+    );
+    setProducts(JSON.parse(localStorage.getItem('products')));
   };
 
   return (
@@ -49,7 +61,7 @@ const Basket = (props) => {
         <Container>
           <Link to="/home" className="main-link">
             Main page /
-          </Link>{" "}
+          </Link>{' '}
           <span className="product-link">Basket</span>
           <h2 className="Basket-head">Basket</h2>
           <div className="Basket-main">
@@ -64,16 +76,16 @@ const Basket = (props) => {
                       />
                     </div>
                     <div className="Basket-card_main-text">
-                      <p>{item.text ? item.text : "Snow Tender Ice Cream"}</p>
+                      <p>{item.text ? item.text : 'Snow Tender Ice Cream'}</p>
                       <p className="pcs">
-                        {`${item.pcs} pcs.` ? `${item.pcs} pcs.` : "1 pcs."}
+                        {`${item.pcs} pcs.` ? `${item.pcs} pcs.` : '1 pcs.'}
                       </p>
                     </div>
                   </div>
 
                   <div className="Basket-card_price">
                     <span className="Basket-card_price-text">
-                      {item.price ? `$${item.price}` : "$243.00"}
+                      {item.price ? `$${item.price}` : '$243.00'}
                     </span>
                     <img
                       src={deleteImg}
@@ -88,7 +100,7 @@ const Basket = (props) => {
             <div className="Basket-main_costs">
               <div className="subTotal-block">
                 <span className="subTotal-block_text">Sub total:</span>
-                <span className="subTotal-block_price">$3,629.00</span>
+                <span className="subTotal-block_price">{`$${result}`}</span>
               </div>
               <hr />
               <button className="subTotal-block_btn">Check out</button>

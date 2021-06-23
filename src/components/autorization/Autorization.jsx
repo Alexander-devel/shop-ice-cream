@@ -1,8 +1,6 @@
-import React, { useState } from "react";
-import { Dialog } from "@material-ui/core";
-import Slide from "@material-ui/core/Slide";
-import Snackbar from "@material-ui/core/Snackbar";
-import MuiAlert from "@material-ui/lab/Alert";
+import React, { useState } from 'react';
+import { Dialog, Slide, Snackbar } from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -13,11 +11,11 @@ function Alert(props) {
 }
 
 const Registration = (props) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [open, setOpen] = useState(false);
-  const [message, setMessage] = useState("");
-  const [severity, setSeverity] = useState("error");
+  const [message, setMessage] = useState('');
+  const [severity, setSeverity] = useState('error');
 
   const handleCreateOne = () => {
     props.setAutorization(false);
@@ -25,12 +23,12 @@ const Registration = (props) => {
   };
 
   const handleAutorization = () => {
-    if (password === "" || email === "") {
-      setMessage("Заполните все поля!");
+    if (password === '' || email === '') {
+      setMessage('Заполните все поля!');
       setOpen(true);
     } else if (!/(?=.*[0-9])(?=.*[A-Za-z]){5,}/.test(password)) {
       setMessage(
-        "Введите в поле password не менее 6 латинских символов, минимум 1 из которых является числом"
+        'Введите в поле password не менее 6 латинских символов, минимум 1 из которых является числом'
       );
       setOpen(true);
     } else if (
@@ -38,14 +36,14 @@ const Registration = (props) => {
         email
       )
     ) {
-      setMessage("Введите корректный email, Example: jsmith@example.com");
+      setMessage('Введите корректный email, Example: jsmith@example.com');
       setOpen(true);
     } else {
-      setEmail("");
-      setPassword("");
+      setEmail('');
+      setPassword('');
       setOpen(true);
-      setMessage("Вход выполнен успешно!!!");
-      setSeverity("success");
+      setMessage('Вход выполнен успешно!!!');
+      setSeverity('success');
       onDialogClose();
     }
   };
@@ -53,12 +51,12 @@ const Registration = (props) => {
   const onDialogClose = () => {
     props.setAutorization(false);
     setTimeout(() => {
-      setSeverity("error");
+      setSeverity('error');
     }, 4000);
-  }
+  };
 
   const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
+    if (reason === 'clickaway') {
       return;
     }
     setOpen(false);
@@ -111,7 +109,7 @@ const Registration = (props) => {
         open={open}
         autoHideDuration={4000}
         onClose={handleClose}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       >
         <Alert onClose={handleClose} severity={severity}>
           {message}

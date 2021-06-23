@@ -1,13 +1,14 @@
-import React, { useState } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
-import Home from "./layouts/Home";
-import Descr from "./components/description/Descr";
-import Basket from "./components/basket/Basket";
-import ProtectedRoute from "./components/ProtectedRoutes";
-import Registration from "./components/registration/Registration";
+import React, { useState } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
+
+import Home from './layouts/Home';
+import Descr from './components/description/Descr';
+import Basket from './components/basket/Basket';
+import ProtectedRoute from './components/ProtectedRoutes';
+import Registration from './components/registration/Registration';
 
 const App = () => {
-  const [user, setUser] = useState(localStorage.getItem("user") ? true : false);
+  const [user, setUser] = useState(localStorage.getItem('user') ? true : false);
 
   const handleLogin = () => {
     setUser(true);
@@ -40,7 +41,12 @@ const App = () => {
           )}
         />
         <Route path="/registration" component={Registration} />
-        <ProtectedRoute path="/basket" user={user} component={Basket} handleLogout={handleLogout} />
+        <ProtectedRoute
+          path="/basket"
+          user={user}
+          component={Basket}
+          handleLogout={handleLogout}
+        />
         <Redirect from="/" to="/home" />
       </Switch>
     </div>

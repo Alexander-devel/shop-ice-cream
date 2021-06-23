@@ -1,14 +1,16 @@
-import React, { useState, useLayoutEffect, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import { Container } from "@material-ui/core";
-import Registration from "../../components/registration/Registration";
-import Autorization from "../../components/autorization/Autorization";
-import logo from "../../img/logoM.png";
-import logoText from "../../img/logo-text.png";
-import profile from "../../img/profile.svg";
-import basket from "../../img/basket.svg";
-import burgerImg from "../../img/menu.svg";
-import "./Header.sass";
+import React, { useState, useLayoutEffect, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Container } from '@material-ui/core';
+
+import Registration from '../../components/registration/Registration';
+import Autorization from '../../components/autorization/Autorization';
+
+import logo from '../../img/logoM.png';
+import logoText from '../../img/logo-text.png';
+import profile from '../../img/profile.svg';
+import basket from '../../img/basket.svg';
+import burgerImg from '../../img/menu.svg';
+import './Header.sass';
 
 const useWindowSize = () => {
   const [size, setSize] = useState([0, 0]);
@@ -16,9 +18,9 @@ const useWindowSize = () => {
     function updateSize() {
       setSize([window.innerWidth, window.innerHeight]);
     }
-    window.addEventListener("resize", updateSize);
+    window.addEventListener('resize', updateSize);
     updateSize();
-    return () => window.removeEventListener("resize", updateSize);
+    return () => window.removeEventListener('resize', updateSize);
   }, []);
   return size;
 };
@@ -30,9 +32,9 @@ const Header = (props) => {
   const [registration, setRegistration] = useState(false);
   const [autorization, setAutorization] = useState(false);
   const [user, setUser] = useState(
-    localStorage.getItem("user") ? localStorage.getItem("user") : ""
+    localStorage.getItem('user') ? localStorage.getItem('user') : ''
   );
-  let history = useHistory();
+  const history = useHistory();
 
   useEffect(() => {
     if (width < 400) {
@@ -48,18 +50,18 @@ const Header = (props) => {
 
   const onDeleteUser = () => {
     props.handleLogout();
-    localStorage.removeItem("user");
-    setUser("");
+    localStorage.removeItem('user');
+    setUser('');
   };
 
   const onClickCart = () => {
-    history.push('/basket')
-  }
+    history.push('/basket');
+  };
 
   const onClickReg = () => {
     setRegistration(true);
-    history.push('/registration')
-  }
+    history.push('/registration');
+  };
 
   return (
     <div className="Header">
@@ -80,8 +82,8 @@ const Header = (props) => {
                   onClick={() => onClickReg()}
                 >
                   Sign up
-                </span>{" "}
-                /{" "}
+                </span>{' '}
+                /{' '}
                 <span
                   className="Header-profile_sign-in"
                   onClick={() => setAutorization(true)}
@@ -91,8 +93,8 @@ const Header = (props) => {
               </span>
             )}
             <div className="basket">
-              {localStorage.getItem("cart") ? (
-                <p className="basket_buy">{localStorage.getItem("cart")}</p>
+              {localStorage.getItem('cart') ? (
+                <p className="basket_buy">{localStorage.getItem('cart')}</p>
               ) : null}
               <img src={basket} alt="basket" />
               <span className="Header-profile_card">Cart</span>
@@ -134,8 +136,8 @@ const Header = (props) => {
                   onClick={() => setRegistration(true)}
                 >
                   Sign up
-                </span>{" "}
-                /{" "}
+                </span>{' '}
+                /{' '}
                 <span
                   className="Header-profile_sign-in"
                   onClick={() => setAutorization(true)}
@@ -146,12 +148,14 @@ const Header = (props) => {
             )}
 
             <div className="basket">
-              {localStorage.getItem("cart") ? (
-                <p className="basket_buy">{localStorage.getItem("cart")}</p>
+              {localStorage.getItem('cart') ? (
+                <p className="basket_buy">{localStorage.getItem('cart')}</p>
               ) : null}
-              <img src={basket} alt="basket" onClick={() => onClickCart()}/>
+              <img src={basket} alt="basket" onClick={() => onClickCart()} />
             </div>
-            <span className="Header-profile_card" onClick={() => onClickCart()}>Cart</span>
+            <span className="Header-profile_card" onClick={() => onClickCart()}>
+              Cart
+            </span>
           </div>
         )}
       </Container>
